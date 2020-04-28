@@ -1,0 +1,6 @@
+<div *ngIf="this.gameService.userNicknamesInSession.length">
+    <h3>Players:</h3>
+    <ul>
+        <li *ngFor="let nickname of this.gameService.userNicknamesInSession">{{nickname}}</li>
+    </ul>
+</div>
