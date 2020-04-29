@@ -1,10 +1,16 @@
-<p>Hiya!</p>
-
-<div style="display: inline-block; min-width: 49vw; border: red solid 1px;">
-    <status-pannel style="border: 1px solid purple; display: block;"></status-pannel>
-    <app-game-controls></app-game-controls>
-</div>
-
-<div style="display: inline-block; min-width: 49vw; border: red solid 1px;">
-    <app-user-list></app-user-list>
+<div id="app">
+    <p>Hiya!</p>
+    
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col d-inline-block" style="border: red solid 1px;">
+                <status-pannel style="border: 1px solid purple; display: block;"></status-pannel>
+                <app-game-controls></app-game-controls>
+            </div>
+            
+            <div class="col d-inline-block" style="border: red solid 1px;">
+                <app-user-list></app-user-list>
+            </div>
+        </div>
+    </div>
 </div>
