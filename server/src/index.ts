@@ -228,6 +228,6 @@ function updateUser(clientSocket: Socket): void{
 
 //Start the server
 server.listen(process.env.PORT || 8080, ()=>{
-    console.log(`Listening on *:${process.env.PORT || 8080}`)
+    console.log(`Server at *:${process.env.PORT || 8080}`)
 })
 
