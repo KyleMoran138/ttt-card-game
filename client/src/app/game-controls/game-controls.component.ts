@@ -23,12 +23,8 @@ export class GameControlsComponent implements OnInit {
   }
 
   public joinSession(): void{
+    if(!this.sessionToJoinOrCreate) return;
     this.gameService.joinSession(this.sessionToJoinOrCreate);
-  }
-
-  public createSession(): void{
-    this.gameService.createSession(this.sessionToJoinOrCreate);
-    delete this.sessionToJoinOrCreate;
   }
 
   public leaveSession(): void{

@@ -6,6 +6,7 @@
             *ngIf="!this.gameService.player.session"
             [(ngModel)]="this.newNickname" 
             (keyup.enter)="this.changeName()"
+            tabindex="1"
         >
         <span *ngIf="this.gameService.player.session">{{this.gameService.player.nickname}}</span>
     </span>
@@ -17,12 +18,11 @@
     <h3>Session</h3>
     <span>
         Session: 
-        <input *ngIf="!this.gameService.player.session" type="text" [(ngModel)]="this.sessionToJoinOrCreate" (keyup.enter)="this.joinSession()">
+        <input *ngIf="!this.gameService.player.session" type="text" [(ngModel)]="this.sessionToJoinOrCreate" (keyup.enter)="this.joinSession()" tabindex="2">
         <span *ngIf="this.gameService.player.session">{{this.gameService.player.session}}</span>
     </span>
     <br>
     <button type="button" *ngIf="!this.gameService.player.session" (click)="this.joinSession()">Join session</button>
-    <button type="button" *ngIf="!this.gameService.player.session" (click)="this.createSession()">Create session</button>
     <button type="button" class="btn-danger" *ngIf="this.gameService.player.session" (click)="this.leaveSession()">Leave session</button>
 </div>
 

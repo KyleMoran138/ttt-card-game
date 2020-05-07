@@ -28,6 +28,9 @@ export class GameService {
     this.gameSocket.addListener('joinSession', (resp: ServiceResponse<User>) => {
       if (resp.status <= 299){
         this.player.session = resp.data.session;
+      }else if(resp.status == 404 && resp.data && typeof resp.data == 'string'){
+        this.createSession(resp.data);
+        console.log(`${resp.data} does not exist, creating`)
       }else{
         console.error(`Service error: ${resp.message}`);
         alert(`HEY(${resp.status}): ${resp.message}`);

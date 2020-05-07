@@ -39,7 +39,7 @@ socket.on('connection', (clientSocket) => {
 //Session actions
 async function joinSession(sessionName: string, clientSocket: Socket): Promise<void>{
     if(!sessions.has(sessionName)){
-        clientSocket.emit('joinSession', {message: "Session does not exist", status: 404});
+        clientSocket.emit('joinSession', {message: "Session does not exist", status: 404, data: sessionName});
         return;
     }
 
