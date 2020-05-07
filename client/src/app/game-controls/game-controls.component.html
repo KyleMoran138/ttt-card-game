@@ -1,20 +1,32 @@
-<div>
-    <h3>User</h3>
-    <span>Username: </span><input type="text" [(ngModel)]="this.newNickname" (keyup.enter)="this.changeName()">
+<div class="controlRow">
+    <h3>User{{!this.gameService.player.session ? ": " + this.gameService.player.nickname : ""}}</h3>
+    <span>Username:
+        <input 
+            type="text" 
+            *ngIf="!this.gameService.player.session"
+            [(ngModel)]="this.newNickname" 
+            (keyup.enter)="this.changeName()"
+        >
+        <span *ngIf="this.gameService.player.session">{{this.gameService.player.nickname}}</span>
+    </span>
     <br>
-    <button type="button" (click)="this.changeName()">Set nickname!</button><br>
+    <button *ngIf="!this.gameService.player.session" type="button" (click)="this.changeName()">Set nickname!</button><br>
 </div>
 
-<div style="margin-top: 1rem;">
+<div class="controlRow">
     <h3>Session</h3>
-    <span *ngIf="!this.gameService.player.session" >Session: <input type="text" [(ngModel)]="this.sessionToJoinOrCreate" (keyup.enter)="this.joinSession()"></span>
+    <span>
+        Session: 
+        <input *ngIf="!this.gameService.player.session" type="text" [(ngModel)]="this.sessionToJoinOrCreate" (keyup.enter)="this.joinSession()">
+        <span *ngIf="this.gameService.player.session">{{this.gameService.player.session}}</span>
+    </span>
     <br>
     <button type="button" *ngIf="!this.gameService.player.session" (click)="this.joinSession()">Join session</button>
     <button type="button" *ngIf="!this.gameService.player.session" (click)="this.createSession()">Create session</button>
     <button type="button" class="btn-danger" *ngIf="this.gameService.player.session" (click)="this.leaveSession()">Leave session</button>
 </div>
 
-<div style="margin-top: 1rem;" *ngIf="this.gameService.currentSessionGame">
+<div class="controlRow" *ngIf="this.gameService.currentSessionGame">
     <h3>Game settings</h3>
     <div *ngIf="!this.gameService.currentSessionGame.currentRound">
         <span>Trator to innocent ratio</span><input type="number" [(ngModel)]="this.gameService.currentSessionGame.tratorToInnocentRatio"><br>
