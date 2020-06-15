@@ -59,6 +59,7 @@ async function joinSession(sessionName: string, clientSocket: Socket): Promise<v
 }
 async function leaveSession(clientSocket: Socket): Promise<void>{
     let user = getSocketUser(clientSocket);
+    let usersSession = user.session
     if (user.session){
         clientSocket.leave(user.session);
         await deleteSessionIfLastUser(clientSocket);
@@ -71,6 +72,9 @@ async function leaveSession(clientSocket: Socket): Promise<void>{
         return;
     }
     clientSocket.emit('leaveSession', {data: user, status: 200});
+    if(usersSession){
+        updateSessionUserList(usersSession || '');
+    }
     return;
 }
 async function createSession(sessionName: string, clientSocket: Socket): Promise<void>{
